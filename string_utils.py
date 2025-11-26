@@ -50,16 +50,16 @@ def count_chars(s, char):
     return count
 
 def is_palindrome(s):
-    """Проверяет, является ли строка палиндромом"""
-    s = strip_string(s).lower()
-    left, right = 0, len(s) - 1
+    """Проверяет, является ли строка палиндромом (игнорируя пробелы и регистр)"""
+    # Очищаем строку от пробелов и приводим к нижнему регистру
+    cleaned = to_lower_case(s)
+    cleaned_without_spaces = ""
+    for char in cleaned:
+        if char != ' ':
+            cleaned_without_spaces += char
     
-    while left < right:
-        if s[left] != s[right]:
-            return False
-        left += 1
-        right -= 1
-    return True
+    # Проверяем палиндром
+    return cleaned_without_spaces == reverse_string(cleaned_without_spaces)
 
 def replace_char(s, old_char, new_char):
     """Заменяет все вхождения одного символа на другой"""
